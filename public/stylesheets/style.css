@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.paginate-list {
+    font-weight: 500;
+    font-size: 20px;
+}
+.emp-detail-info {
+    font-weight: 500;
+    font-size: 1rem;
+    color:#940808;
+}
+
+.table-detail-info td {
+    padding: 0.5rem !important;
+}

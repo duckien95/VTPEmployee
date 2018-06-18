@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" >
+  </head>
+  <body>
+    <h1 class="text-center mb-5"><%= title %></h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Mã nhân viên</th>
+                <th scope="col">Chi nhánh</th>
+                <th scope="col">Phòng ban</th>
+                <th scope="col">Nhóm</th>
+                <th scope="col">Vị trí</th>
+                <th scope="col">Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i = 0; i < employeeList.length; i++ ){ %>
+                <tr>
+                    <th scope="row"><%= index  + i + 1 %></th>
+                    <td><%= employeeList[i].fullName %></td>
+                    <td><%= employeeList[i].employeeCode %></td>
+                    <td><%= employeeList[i].organizationName %></td>
+                    <td><%= employeeList[i].departmentName %></td>
+                    <td><%= employeeList[i].groupName %></td>
+                    <td>
+                        <%= employeeList[i].positionName %>
+                    </td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target=<%= '#employee_' + i %> >
+                        Xem chi tiết
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id=<%= 'employee_' + i %> tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Thông tin chi tiết nhân viên</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-detail-info">
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                  <td>Họ tên</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].fullName %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Mã nhân viên</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].employeeCode %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Giới tính</td>
+                                                  <td class="emp-detail-info">
+                                                      <% if (employeeList[i].gender == 1) { %>
+                                                          Nam
+                                                      <% } else { %>
+                                                          Nữ
+                                                      <% } %>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Ngày sinh</td>
+                                                  <td class="emp-detail-info"><%= moment(employeeList[i].dateOfBirth).format("DD/MM/YY") %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Nơi sinh</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].placeOfBirth %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Địa chỉ thường trú</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].permanentAddress %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Địa chỉ hiên tại</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].currentAddress %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Điện thoại</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].telephoneNumber %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Di động</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].mobileNumber %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Số CMT/CCCD</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].personalIdNumber %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Ngày cấp</td>
+                                                  <td class="emp-detail-info"><%= moment(employeeList[i].personalIdIssuedDate).format("DD/MM/YY") %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Nơi cấp</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].personalIdIssuedPlace %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Kiểu hợp đồng</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].empType %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Vị trí</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].positionName %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Chi nhánh</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].organizationName %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Phòng ban</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].departmentName %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Nhóm</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].groupName %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>STK</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].accountNumber %></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Ngân hàng</td>
+                                                  <td class="emp-detail-info"><%= employeeList[i].bank %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <div class="paginate-list containter text-center">
+        <% if (pages > 0) { %>
+            <ul class="pagination">
+                <% if (current == 1) { %>
+                    <li class="disabled "><a class="page-link">Đầu</a></li>
+                <% } else { %>
+                    <li class="page-item"><a class="page-link" href="/employees/1">Đầu</a></li>
+                <% } %>
+                <% var i = (Number(current) > Number(maxPage) ? Number(current) - Number(maxPage) + 1 : 1) %>
+                <% if (i !== 1) { %>
+                    <li class="disabled page-item"><a class="page-link">...</a></li>
+                <% } %>
+                <% for (; i <= (Number(current) + Number(maxPage) - 1) && i <= pages; i++) { %>
+                    <% if (i == current) { %>
+                        <li class="active page-item"><a class="page-link"><%= i %></a></li>
+                    <% } else { %>
+                        <li class="page-item"><a class="page-link" href="/employees/<%= i %>"><%= i %></a></li>
+                    <% } %>
+                    <% if (i == Number(current) + 14 && i < pages) { %>
+                        <li class="disabled page-item"><a class="page-link">...</a></li>
+                    <% } %>
+                <% } %>
+                <% if (current == pages) { %>
+                    <li class="disabled page-item"><a class="page-link">Cuối</a></li>
+                <% } else { %>
+                    <li class="page-item"><a class="page-link" href="/employees/<%= pages %>">Cuối</a></li>
+                <% } %>
+            </ul>
+        <% } %>
+    <div>
+  </body>
+  <script src="/javascripts/jquery-3.2.1.slim.min.js"></script>
+  <script src="/javascripts/popper.min.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
+</html>
